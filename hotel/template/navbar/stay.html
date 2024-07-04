@@ -1,0 +1,66 @@
+{% extends "navbar/home.html" %}
+{% load static %}
+{% block content %}
+<style>
+    body {
+        background-color: #f8f9fa; /* Light grey background */
+    }
+    .container {
+        margin-top: 50px;
+    }
+    .card {
+        margin: 15px;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+    .card-img-top {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        height: 200px;
+        object-fit: cover;
+    }
+    .card-body {
+        padding: 20px;
+    }
+    .card-title {
+        font-size: 1.25rem;
+        margin-bottom: 10px;
+    }
+    .card-text {
+        font-size: 0.9rem;
+        color: #6c757d;
+        margin-bottom: 15px;
+    }
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        padding: 10px 15px;
+        font-size: 0.9rem;
+        border-radius: 5px;
+    }
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<div class="container">
+    <img src="{% static 'images/dine1.png' %}" class="img-fluid mx-auto d-block my-4" alt="Example Image">
+    <div class="row justify-content-center">
+        {% for i in images %}
+        <div class="col-md-4">
+            <div class="card">
+                <img src="{{ i.image.url }}" class="card-img-top" alt="rooms pic">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ i.room }}</h5>
+                    <p class="card-text">{{ i.description }}</p>
+                    <a href="#" class="btn btn-primary">Details</a>
+                    <a href="{% url 'urldate' i.id %}" class="btn btn-primary">Book</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
