@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 import sweetify
 from django.views.generic import ListView
-from .models import BookingField
+from .models import BedField
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
@@ -10,7 +10,7 @@ from paypal.standard.forms import PayPalPaymentsForm
 import uuid
 from home.models import StayPics
 from BookDetails.forms import BookingForm
-from BookDetails.models import BookingField
+from BookDetails.models import BedField,BookData
 
 
 # Create your views here.
@@ -28,12 +28,10 @@ def booking(req, id, year=None, month=None, *args, **kwargs,):
         if form.is_valid(): 
             checkin = form.cleaned_data['checkin']
             checkout = form.cleaned_data['checkout']
-            bed = form.cleaned_data['bed']
             adults = form.cleaned_data['adults']
             children = form.cleaned_data['children']
 
-            existing_reservation = BookingField.objects.filter(
-                bed=bed,
+            existing_reservation = BookData.objects.filter(
                 checkin__lt=checkout,
                 checkout__gt=checkin
             ).exists()
@@ -42,9 +40,7 @@ def booking(req, id, year=None, month=None, *args, **kwargs,):
                 sweetify.toast(req, 'Room has already been reserved', icon='warning', timer=3000)
                 return render(req, "booking/booking.html", {'form': form, 'book': book, 'year': year, 'month': month,"paypal":paypal})
 
-            data = BookingField.objects.create(
-                customer=req.user,
-                bed=bed,
+            data = BookData.objects.create(
                 checkin=checkin,
                 checkout=checkout,
                 adults=adults,
@@ -88,4 +84,4 @@ def payment_failed(request, id):
     
     
 class BookedList(ListView):
-    model = BookingField
+    model = BedField

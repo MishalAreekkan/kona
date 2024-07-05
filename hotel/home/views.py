@@ -1,26 +1,17 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import make_password
-from django.core.exceptions import ValidationError
-from django.conf import settings
-from django.urls import reverse
-from paypal.standard.forms import PayPalPaymentsForm
 from datetime import datetime
 import sweetify
-import uuid
 from .forms import RegisterationForm, LoginForm, StayPicsForm, DinePicsForm
-from .models import StayPics, DinePics, User
-from BookDetails.forms import BookingForm
-from BookDetails.models import BookingField
+from .models import StayPics, DinePics,MyUser
 
 
 def register(req):
     if req.method == 'POST':
         form = RegisterationForm(req.POST)
         if form.is_valid():
-            form.cleaned_data['password'] = make_password(form.cleaned_data['password'])
-            User.objects.create(**form.cleaned_data)
+            MyUser.objects.create_user(**form.cleaned_data)
             return redirect('login')
     else:
         form = RegisterationForm()
@@ -31,8 +22,8 @@ def user_login(req):
     if req.method == 'POST':
         form = LoginForm(req.POST)
         if form.is_valid():
-            user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
-            if user is not None:
+            user = MyUser.objects.get(username = form.cleaned_data['username'])
+            if user.check_password(form.cleaned_data['password']):
                 login(req, user)
                 sweetify.toast(req, 'You have successfully logged in.')
                 return redirect('stay')
@@ -57,12 +48,17 @@ def roompic(request):
             return redirect('stay')
     else:
         form = StayPicsForm()
-    show = StayPics.objects.all()
-    return render(request, 'navbar/Stay_pics.html', {'form': form, 'show': show})
+    # show = StayPics.objects.all()
+    context = {
+        'form': form,
+        # 'show': show
+    }
+    return render(request, 'navbar/Stay_pics.html',context )
 
 
 def stay_pic_edit(req, id):
-    edited = get_object_or_404(StayPics, id=id)
+    # edited = get_object_or_404(StayPics, id=id)
+    edited = StayPics.objects.get(id=id)
     if req.method == 'POST':
         form = StayPicsForm(req.POST, instance=edited)
         if form.is_valid():

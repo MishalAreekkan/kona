@@ -151,7 +151,9 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'home.MyUser'
+# AUTH_USER_MODEL = 'home.MyUser'
+
+
 
 
 PAYPAL_RECEIVER_EMAIL = 'sb-yk3zv31417740@business.example.com'

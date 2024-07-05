@@ -1,9 +1,9 @@
 from django import forms
-from .models import User,StayPics,DinePics
+from .models import MyUser,StayPics,DinePics
 
 class RegisterationForm(forms.ModelForm):
     class Meta:
-        model = User
+        model = MyUser
         fields = ['first_name','last_name','username','email','password']
         help_texts = {
             'username': None,
@@ -22,6 +22,7 @@ class StayPicsForm(forms.ModelForm):
     class Meta:
         model = StayPics
         fields = ['room','description','image']
+        # fields = '__all__'
         
 class DinePicsForm(forms.ModelForm):
     start_time = forms.TimeField(widget=forms.TimeInput(format='%H:%M'))
