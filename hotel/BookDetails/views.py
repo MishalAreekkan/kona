@@ -41,6 +41,7 @@ def booking(req, id, year=None, month=None, *args, **kwargs,):
                 return render(req, "booking/booking.html", {'form': form, 'book': book, 'year': year, 'month': month,"paypal":paypal})
 
             data = BookData.objects.create(
+                # bedtype = None,
                 checkin=checkin,
                 checkout=checkout,
                 adults=adults,

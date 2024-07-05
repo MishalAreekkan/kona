@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.admin.widgets import AdminDateWidget
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.core.exceptions import ValidationError
 
@@ -13,7 +12,7 @@ class BedField(models.Model):
     )
 
     bed = models.CharField(max_length=6, choices=Bed_choices, default='King')
-    price = models.CharField(max_length=10)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
 
 
 class BookData(models.Model):

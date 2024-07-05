@@ -25,6 +25,7 @@ def user_login(req):
             user = MyUser.objects.get(username = form.cleaned_data['username'])
             if user.check_password(form.cleaned_data['password']):
                 login(req, user)
+                print(user,'lllllllllllll')
                 sweetify.toast(req, 'You have successfully logged in.')
                 return redirect('stay')
             else:
