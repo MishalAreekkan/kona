@@ -50,7 +50,7 @@ class MyUserManager(BaseUserManager):
         return user
 
 
-class CustomUser(AbstractBaseUser):
+class MyUser(AbstractBaseUser):
     first_name = models.CharField(max_length=150,null=True,blank=True)
     last_name = models.CharField(max_length=150,null=True,blank=True)
     password = models.CharField(max_length=150)
@@ -81,7 +81,7 @@ class CustomUser(AbstractBaseUser):
 
    
 class StayPics(models.Model):
-    customer = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
+    customer = models.ForeignKey(MyUser,on_delete=models.CASCADE)
     room = models.CharField(max_length=100)
     description = models.TextField()
     image = models.ImageField(upload_to='images/')

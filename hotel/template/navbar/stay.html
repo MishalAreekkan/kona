@@ -43,10 +43,10 @@
     .btn-primary:hover {
         background-color: #0056b3;
     }
+
 </style>
 
 <div class="container">
-    <img src="{% static 'images/dine1.png' %}" class="img-fluid mx-auto d-block my-4" alt="Example Image">
     <div class="row justify-content-center">
         {% for i in images %}
         <div class="col-md-4">
@@ -63,4 +63,5 @@
         {% endfor %}
     </div>
 </div>
+
 {% endblock %}

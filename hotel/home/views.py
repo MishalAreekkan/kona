@@ -114,7 +114,8 @@ def celebrate(req):
 def gallery(req):
     return render(req, 'navbar/gallery.html')
 
-
+def contact(req):
+    return render(req,'navbar/contact.html')
 
 
 def url_date(req, id=None):

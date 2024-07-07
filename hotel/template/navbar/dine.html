@@ -1,10 +1,34 @@
 {% extends "navbar/home.html" %}
 {% block content %}
 {% load static %}
-<img src="{% static 'images/dine1.png' %}" class="img-fluid mx-auto d-block my-4" alt="Example Image">
-
-<div class="text-center mb-5">
-    <h3>
+<style>
+    .video-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 800px;
+        overflow: hidden;
+        z-index: -1;
+    }
+      
+    .video {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+    h3{
+        font-family: 'Lobster', cursive; 
+    }
+</style>
+    <div class="video-background" id='home1'>
+        <video autoplay loop muted>
+            <source src="{% static 'videos/dine.mp4' %}" type="video/mp4" />
+            Your browser does not support the video tag.
+        </video>
+    </div>
+<div style="position:absolute; margin-top: 250px;">
+    <h3 style="color: white;">
         Authentic dining experiences from around the world.
         <br> Discover our serving mouth-watering cuisine and drinks in
         <br> immaculately designed surroundings.
@@ -19,6 +43,7 @@
                 {% if d.image %}
                 <img class="card-img-top" src="{{ d.image.url }}" alt="Card image cap" style="height: 200px; object-fit: cover;">
                 {% endif %}
+                
                 <div class="card-body">
                     <h5 class="card-title">{{ d.meal_type }}</h5>
                     <h5 class="card-title">{{ d.name }}</h5>

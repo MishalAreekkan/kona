@@ -25,6 +25,8 @@ urlpatterns = [
     path('', include('home.urls')),
     path('',include('BookDetails.urls')),
     path('',include('paypal.standard.ipn.urls')),
+    path("__reload__/", include("django_browser_reload.urls")),
+
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

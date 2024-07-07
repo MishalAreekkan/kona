@@ -10,6 +10,7 @@ urlpatterns = [
     path('spa',views.spa,name='spa'),
     path('celebrate',views.celebrate,name='celebrate'),
     path('gallery',views.gallery,name='gallery'),
+    path('contact',views.contact,name='contact'),
     path('roompic',views.roompic,name='roompic'),
     path('dinepic',views.dinepic,name='dinepic'),
     path('urldate/<int:id>/',views.url_date,name='urldate'),

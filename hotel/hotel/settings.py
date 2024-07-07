@@ -43,7 +43,11 @@ INSTALLED_APPS = [
     'home',
     'sweetify',
     'BookDetails',
-    'paypal.standard.ipn'
+    'paypal.standard.ipn',
+    'tailwind',
+    'theme',
+    'django_browser_reload'
+
     
 ]
 
@@ -55,6 +59,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
+
 ]
 
 ROOT_URLCONF = 'hotel.urls'
@@ -81,22 +87,22 @@ WSGI_APPLICATION = 'hotel.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db1.sqlite3',
-#     }
-# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'roomdata',
-        'USER': 'hotel_user',
-        'PASSWORD': 'zzzz',
-        'HOST': 'localhost',
-        'PORT': '5432', 
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db1.sqlite3',
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'roomdata',
+#         'USER': 'hotel_user',
+#         'PASSWORD': 'zzzz',
+#         'HOST': 'localhost',
+#         'PORT': '5432', 
+#     }
+# }
 
 
 # Password validation
@@ -151,9 +157,11 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'home.CustomUser'
-
-
+# AUTH_USER_MODEL = 'home.CustomUser'
+TAILWIND_APP_NAME = 'theme'
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
 
 
 PAYPAL_RECEIVER_EMAIL = 'sb-yk3zv31417740@business.example.com'
