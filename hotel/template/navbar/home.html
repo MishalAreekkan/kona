@@ -2,15 +2,20 @@
 <html lang="en">
 {% load static %}
 {% load static tailwind_tags %}
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Hotel Management{% endblock %}</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     {% tailwind_css %}
     <link href='https://fonts.googleapis.com/css?family=Font+Name' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
-
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Anton+SC&family=Bodoni+Moda+SC:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap" rel="stylesheet">
     <style>
         /* Custom CSS for hover effects and design */
 
@@ -23,14 +28,21 @@
 
         /* Navbar link color */
         .navbar-dark .navbar-nav .nav-link {
-            color: black; /* Change link color to black */
+            color: black;
+            /* Change link color to black */
             transition: color 0.3s ease;
             margin-left: 15px;
             font-size: 20px;
-            font-family: 'Lobster', cursive;         }
-        
+            font-family: 'Lobster', cursive;
+        }
+
         .navbar-dark .navbar-nav .nav-link:hover {
-            color: #ffc107; /* Change to your preferred hover color */
+            color: #ffc107;
+            /* Change to your preferred hover color */
+        }
+
+        .navbar-dark .navbar-nav .nav-link.active {
+            text-decoration: underline;
         }
 
         /* Buttons hover effects */
@@ -40,9 +52,12 @@
         }
 
         .btn-dark:hover {
-            background-color: #343a40; /* Darker background on hover */
-            border-color: #343a40; /* Match background color */
-            color: #ffc107; /* Text color on hover */
+            background-color: #343a40;
+            /* Darker background on hover */
+            border-color: #343a40;
+            /* Match background color */
+            color: #ffc107;
+            /* Text color on hover */
         }
 
         /* Image styling */
@@ -50,9 +65,11 @@
             max-width: 100%;
             height: auto;
         }
-        .navbar-brand{
+
+        .navbar-brand {
             width: 100px;
         }
+
         .custom-button {
             background-color: #115a6e;
             border: none;
@@ -64,12 +81,12 @@
             font-size: 16px;
             margin: 4px 2px;
             cursor: pointer;
-      
+
             position: relative;
             overflow: hidden;
             transition: background-color 0.3s, box-shadow 0.3s;
         }
-    
+
         .custom-button::before {
             content: '';
             position: absolute;
@@ -81,20 +98,23 @@
             transition: transform 0.5s;
             transform: rotate(45deg) translate(-50%, -50%);
         }
-    
+
         .custom-button:hover::before {
             transform: rotate(45deg) translate(150%, 150%);
         }
-    
+
         .custom-button:hover {
             background-color: #d23a29;
             box-shadow: 0 5px 15px rgba(245, 7, 7, 0.3);
         }
-    
+
         .custom-button:active {
-            background-color: #3e8e41; /* Even darker shade for active effect */
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3) inset; /* Inset shadow for pressed effect */
+            background-color: #3e8e41;
+            /* Even darker shade for active effect */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3) inset;
+            /* Inset shadow for pressed effect */
         }
+
         .video-background {
             position: fixed;
             top: 0;
@@ -104,17 +124,22 @@
             overflow: hidden;
             z-index: -1;
         }
+
         .video {
             object-fit: cover;
             width: 100%;
             height: 100%;
         }
-        html, body {
+
+        html,
+        body {
             margin: 0;
             padding: 0;
             height: 100%;
-            overflow: hidden; /* Prevent scrolling */
+            overflow: hidden;
+            /* Prevent scrolling */
         }
+
         #home1 {
             position: fixed;
             top: 0;
@@ -122,8 +147,10 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            z-index: -1; /* Ensure it stays in the background */
+            z-index: -1;
+            /* Ensure it stays in the background */
         }
+
         .full-screen-video {
             position: absolute;
             top: 50%;
@@ -133,7 +160,13 @@
             object-fit: cover;
             transform: translate(-50%, -50%);
         }
-        
+        .vid_text{
+            color: white;
+            font-family: "Bodoni Moda SC", serif;
+            font-optical-sizing: auto;
+            font-size: xx-large;
+            margin-top: 250px;
+        }
     </style>
 
     {% block extra_head %}{% endblock %}
@@ -141,7 +174,7 @@
 
 <body>
     <div>
-        
+
     </div>
     <header class="fixed-top-nav">
         <nav class="navbar navbar-expand-lg navbar-dark">
@@ -149,7 +182,9 @@
                 <a class="nav-link active" aria-current="page" href="{% url 'home' %}">
                     <img src="{% static 'images/logo.png' %}" class="navbar-brand ">
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -171,24 +206,27 @@
                             <a class="nav-link active" aria-current="page" href="{% url 'gallery' %}">Gallery</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{% url 'gallery' %}">Offers</a>
-                        </li>   
+                            <a class="nav-link active" aria-current="page" href="{% url 'gallery' %}">Exclusive
+                                Offers</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{% url 'gallery' %}">Summer Season</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{% url 'contact' %}">Contact Us</a>
-                        </li>           
+                        </li>
                     </ul>
                     {% if not request.user.is_authenticated %}
-                    <a href="{% url 'register' %}"><button type="submit" class="btn btn-dark">Sign In/Join Now</button></a>
+                    <a href="{% url 'register' %}"><button type="submit" class="btn btn-dark">Sign In/Join Now <i
+                                class="bi bi-person"></i></button></a>
                     {% endif %}
                     {% if request.user.is_authenticated %}
                     <a href="{% url 'logout' %}"><button type="submit" class="btn btn-dark">Log out</button></a>
                     {% endif %}
                     <a href="{% url 'stay' %}">
                         <button type="button" class="btn btn-dark custom-button">BOOK</button>
-                    </a>                </div>
+                    </a>
+                </div>
             </div>
         </nav>
     </header>
@@ -198,15 +236,23 @@
         <div id="home1">
             <video class="full-screen-video" autoplay loop muted>
                 <source src="{% static 'videos/stay.mp4' %}" type="video/mp4" />
-                Your browser does not support the video tag.
             </video>
         </div>
-       
+        <div class="vid_text">
+               <h3>Emirates Palace Mandarin Oriental</h3> 
+                <h1>Abu Dhabi</h1>
+        </div>
+        <div>
+            <p style="color: white;">
+                Located on a pristine private beach, Emirates Palace Mandarin Oriental is the epitome of luxury in Abu Dhabi.
+            </p>
+        </div>
+
         {% endblock %}
     </div>
-    
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.6.5/sweetalert2.all.min.js"></script>
 </body>
-</html>
 
+</html>
