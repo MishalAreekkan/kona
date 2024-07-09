@@ -46,9 +46,7 @@ INSTALLED_APPS = [
     'paypal.standard.ipn',
     'tailwind',
     'theme',
-    'django_browser_reload'
-
-    
+    'django_browser_reload',    
 ]
 
 MIDDLEWARE = [
@@ -157,7 +155,9 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# AUTH_USER_MODEL = 'home.CustomUser'
+
+# AUTH_USER_MODEL = 'home.User'
+
 TAILWIND_APP_NAME = 'theme'
 INTERNAL_IPS = [
     "127.0.0.1",

@@ -4,14 +4,14 @@ from django.contrib.auth.hashers import make_password
 from datetime import datetime
 import sweetify
 from .forms import RegisterationForm, LoginForm, StayPicsForm, DinePicsForm
-from .models import StayPics, DinePics,MyUser
+from .models import StayPics, DinePics,User
 
 
 def register(req):
     if req.method == 'POST':
         form = RegisterationForm(req.POST)
         if form.is_valid():
-            MyUser.objects.create_user(**form.cleaned_data)
+            User.objects.create_user(**form.cleaned_data)
             return redirect('login')
     else:
         form = RegisterationForm()
@@ -22,7 +22,7 @@ def user_login(req):
     if req.method == 'POST':
         form = LoginForm(req.POST)
         if form.is_valid():
-            user = MyUser.objects.get(username = form.cleaned_data['username'])
+            user = User.objects.get(username = form.cleaned_data['username'])
             if user.check_password(form.cleaned_data['password']):
                 login(req, user)
                 print(user,'lllllllllllll')

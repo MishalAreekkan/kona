@@ -1,9 +1,9 @@
 from django import forms
-from .models import MyUser,StayPics,DinePics
+from .models import User,StayPics,DinePics
 
 class RegisterationForm(forms.ModelForm):
     class Meta:
-        model = MyUser
+        model = User
         fields = ['first_name','last_name','username','email','password']
         help_texts = {
             'username': None,
